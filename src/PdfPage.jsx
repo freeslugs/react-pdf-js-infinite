@@ -9,6 +9,7 @@ export default class PdfPage extends Component {
     rotate: PropTypes.number,
     className: PropTypes.string,
     pdf: PropTypes.object,
+    onClick: PropTypes.func,
   };
 
   componentDidMount = async () =>  {
@@ -60,9 +61,8 @@ export default class PdfPage extends Component {
         ref={(canvas) => { this.canvas = canvas; }} 
         className={this.props.className} 
         onClick={(e) => {
-          const canvas = e.target;
-          let coordinates = this.getCoordinates(e);
-          // console.log(coordinates);
+          const coordinates = this.getCoordinates(e);
+          this.props.onClick(e, coordinates);
         }}
       />
     );

@@ -32,5 +32,5 @@ export default class MyPdfViewer extends React.Component {
 
 ## Credit
 
-This project is a fork of [react-pdf-js](https://github.com/mikecousins/react-pdf-js) which is a fork of [react-pdfjs](https://github.com/erikras/react-pdfjs) which itself was a port of [react-pdf](https://github.com/nnarhinen/react-pdf), so thank you to
-the original authours.
+This project is a fork of [react-pdf-js-infinite](https://github.com/McRipper/react-pdf-js-infinite) which is a fork of [react-pdf-js](https://github.com/mikecousins/react-pdf-js) which is a fork of [react-pdfjs](https://github.com/erikras/react-pdfjs) which itself was a port of [react-pdf](https://github.com/nnarhinen/react-pdf), so thank you to
+the original authors.

@@ -46,6 +46,7 @@ class Pdf extends Component {
     onDocumentComplete: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -235,6 +236,7 @@ class Pdf extends Component {
               setFirstCanvas={this.setFirstCanvas}
               firstCanvas={this.state.firstCanvas}
               offsetTop={this.state.offsetTop}
+              onClick={this.props.onClick}
             />,
           )}
         </div>
@@ -245,6 +247,6 @@ class Pdf extends Component {
   }
 }
 
-Pdf.displayName = 'react-pdf-js-infinite';
+Pdf.displayName = 'react-pdf-js-infinite-slugs';
 
 export default Pdf;

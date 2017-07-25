@@ -1,12 +1,12 @@
 {
-  "name": "react-pdf-js-infinite",
-  "version": "1.2.0",
+  "name": "react-pdf-js-infinite-slugs",
+  "version": "0.0.2",
   "description": "A React component to wrap PDF.js",
   "main": "./lib/index.js",
   "jsnext:main": "./src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/McRipper/react-pdf-js-infinite"
+    "url": "https://github.com/freeslugs/react-pdf-js-infinite"
   },
   "scripts": {
     "start": "node server",
@@ -24,12 +24,12 @@
     "pdf",
     "pdfjs"
   ],
-  "author": "Emanuele Barban (http://github.com/McRipper)",
+  "author": "Gilad Penn (http://github.com/freeslugs)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/McRipper/react-pdf-js-infinite/issues"
+    "url": "https://github.com/freeslugs/react-pdf-js-infinite/issues"
   },
-  "homepage": "https://github.com/McRipper/react-pdf-js-infinite",
+  "homepage": "https://github.com/freeslugs/react-pdf-js-infinite",
   "peerDependencies": {
     "react": "^15.5.0 || ~0.14.0",
     "react-dom": "^15.5.0 || ~0.14.0"
@@ -61,10 +61,10 @@
     "react": "~15.6.0",
     "react-dom": "~15.6.0",
     "rifraf": "2.0.3",
-    "rimraf": "2.6.1",
+    "rimraf": "^2.6.1",
     "webpack": "3.1.0"
   },
-  "npmName": "react-pdf-js-infinite",
+  "npmName": "react-pdf-js-infinite-slugs",
   "npmFileMap": [
     {
       "files": [
