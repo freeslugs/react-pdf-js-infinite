@@ -11,24 +11,60 @@ export default class PdfPage extends Component {
     pdf: PropTypes.object,
   };
 
-  componentDidMount() {
-    this.props.pdf.getPage(this.props.page).then(this.renderPage);
+  componentDidMount = async () =>  {
+    // console.log('componentDidMount')
+    const pdfPage = await this.props.pdf.getPage(this.props.page);
+    this.renderPage(pdfPage);
+    // console.log('aftercomponentDidMount');
+    if(this.props.page == 1)
+      this.props.setFirstCanvas(this.canvas);
   }
 
-  renderPage = (pdfPage) => {
+  getCoordinates = (e) => {
+    const newOffsetTop = this.props.firstCanvas.getBoundingClientRect().top;    
+    var x = new Number();
+    var y = new Number();
+    
+    if (e.pageX != undefined && e.pageY != undefined) {
+      x = e.pageX;
+      y = e.pageY;
+    } else {
+      x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+      y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+    x -= this.canvas.offsetLeft;
+    y -= this.canvas.offsetTop;
+
+    const offsetTop = this.props.offsetTop - newOffsetTop;
+    const y2 = offsetTop + y;
+    return {p: this.props.page - 1, x: x, y: y2};
+  }
+
+  renderPage = async (pdfPage) => {
+    // console.log(`renderPage, ${pdfPage}`)
     if (pdfPage) {
       const canvasContext = this.canvas.getContext('2d');
       const { scale, rotate } = this.props;
       const viewport = pdfPage.getViewport(scale, rotate);
       this.canvas.height = viewport.height;
       this.canvas.width = viewport.width;
-      pdfPage.render({ canvasContext, viewport });
+      await pdfPage.render({ canvasContext, viewport });
+      // console.log('afterRenderPage');
     }
   }
 
   render() {
     return (
-      <canvas ref={(canvas) => { this.canvas = canvas; }} className={this.props.className} />
+      <canvas 
+        ref={(canvas) => { this.canvas = canvas; }} 
+        className={this.props.className} 
+        onClick={(e) => {
+          const canvas = e.target;
+          let coordinates = this.getCoordinates(e);
+          // console.log(coordinates);
+        }}
+      />
     );
   }
 

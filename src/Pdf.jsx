@@ -53,6 +53,7 @@ class Pdf extends Component {
   };
 
   static onDocumentError(err) {
+    // console.log('onDocumentError')
     if (err.isCanceled && err.pdf) {
       err.pdf.destroy();
     }
@@ -63,6 +64,7 @@ class Pdf extends Component {
   // tests, this appears to be a faster approach: http://jsperf.com/encoding-xhr-image-data/5
   // Jon Leighton https://gist.github.com/jonleighton/958841
   static defaultBinaryToBase64(arrayBuffer) {
+    // console.log('defaultBinaryToBase64')
     let base64 = '';
     const encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -118,6 +120,7 @@ class Pdf extends Component {
   }
 
   constructor(props) {
+    // console.log('constructor')
     super(props);
     this.state = {};
     this.onGetPdfRaw = this.onGetPdfRaw.bind(this);
@@ -126,10 +129,12 @@ class Pdf extends Component {
   }
 
   componentDidMount() {
+    // console.log('componentDidMount')
     this.loadPDFDocument(this.props);
   }
 
   componentWillUnmount() {
+    // console.log('componentWillUnmount')
     const { pdf } = this.state;
     if (pdf) {
       pdf.destroy();
@@ -139,7 +144,12 @@ class Pdf extends Component {
     }
   }
 
+  setFirstCanvas = (firstCanvas) => {
+    this.setState({ firstCanvas, offsetTop: firstCanvas.getBoundingClientRect().top });
+  }
+
   onGetPdfRaw(pdfRaw) {
+    // console.log(`onGetPdfRaw ${pdfRaw}`)
     const { onContentAvailable, onBinaryContentAvailable, binaryToBase64 } = this.props;
     if (typeof onBinaryContentAvailable === 'function') {
       onBinaryContentAvailable(pdfRaw);
@@ -154,6 +164,7 @@ class Pdf extends Component {
   }
 
   onDocumentComplete(pdf) {
+    // console.log(`onDocumentComplete ${pdf}`)
     this.setState({ pdf });
     const { onDocumentComplete, onContentAvailable, onBinaryContentAvailable } = this.props;
     if (typeof onDocumentComplete === 'function') {
@@ -165,6 +176,7 @@ class Pdf extends Component {
   }
 
   getDocument(val) {
+    // console.log(`getDocument ${val}`)
     if (this.documentPromise) {
       this.documentPromise.cancel();
     }
@@ -182,6 +194,7 @@ class Pdf extends Component {
   }
 
   loadPDFDocument(props) {
+    // console.log(`loadPDFDocument ${props}`)
     if (props.file) {
       if (typeof props.file === 'string') {
         return this.getDocument(props.file);
@@ -219,6 +232,9 @@ class Pdf extends Component {
               page={page + 1}
               scale={this.props.scale}
               className={this.props.className}
+              setFirstCanvas={this.setFirstCanvas}
+              firstCanvas={this.state.firstCanvas}
+              offsetTop={this.state.offsetTop}
             />,
           )}
         </div>
