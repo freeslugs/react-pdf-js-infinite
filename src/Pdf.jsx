@@ -47,6 +47,7 @@ class Pdf extends Component {
     className: PropTypes.string,
     style: PropTypes.object,
     onClick: PropTypes.func,
+    onPageComplete: PropTypes.func,
   };
 
   static defaultProps = {
@@ -145,10 +146,6 @@ class Pdf extends Component {
     }
   }
 
-  setFirstCanvas = (firstCanvas) => {
-    this.setState({ firstCanvas, offsetTop: firstCanvas.getBoundingClientRect().top });
-  }
-
   onGetPdfRaw(pdfRaw) {
     // console.log(`onGetPdfRaw ${pdfRaw}`)
     const { onContentAvailable, onBinaryContentAvailable, binaryToBase64 } = this.props;
@@ -174,6 +171,10 @@ class Pdf extends Component {
     if (typeof onContentAvailable === 'function' || typeof onBinaryContentAvailable === 'function') {
       pdf.getData().then(this.onGetPdfRaw);
     }
+  }
+
+  setFirstCanvas = (firstCanvas) => {
+    this.setState({ firstCanvas, offsetTop: firstCanvas.getBoundingClientRect().top });
   }
 
   getDocument(val) {
@@ -237,6 +238,7 @@ class Pdf extends Component {
               firstCanvas={this.state.firstCanvas}
               offsetTop={this.state.offsetTop}
               onClick={this.props.onClick}
+              onPageComplete={this.props.onPageComplete}
             />,
           )}
         </div>

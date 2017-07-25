@@ -10,6 +10,7 @@ export default class PdfPage extends Component {
     className: PropTypes.string,
     pdf: PropTypes.object,
     onClick: PropTypes.func,
+    onPageComplete: PropTypes.func,
   };
 
   componentDidMount = async () =>  {
@@ -19,6 +20,7 @@ export default class PdfPage extends Component {
     // console.log('aftercomponentDidMount');
     if(this.props.page == 1)
       this.props.setFirstCanvas(this.canvas);
+    this.props.onPageComplete(this.canvas);
   }
 
   getCoordinates = (e) => {
@@ -57,9 +59,9 @@ export default class PdfPage extends Component {
 
   render() {
     return (
-      <canvas 
-        ref={(canvas) => { this.canvas = canvas; }} 
-        className={this.props.className} 
+      <canvas
+        ref={(canvas) => { this.canvas = canvas; }}
+        className={this.props.className}
         onClick={(e) => {
           const coordinates = this.getCoordinates(e);
           this.props.onClick(e, coordinates);
