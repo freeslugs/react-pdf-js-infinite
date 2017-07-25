@@ -1,28 +1,34 @@
-# react-pdf-js-infinite
+# react-pdf-js-infinite-slugs
 ---
-[![npm version](https://badge.fury.io/js/react-pdf-js-infinite.svg)](https://badge.fury.io/js/react-pdf-js-infinite)
+[![npm version](https://badge.fury.io/js/react-pdf-js-infinite-slugs.svg)](https://badge.fury.io/js/react-pdf-js-infinite-slugs)
 
-`react-pdf-js-infinite` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Written for React 15 and ES2015 using the Airbnb style guide.
+`react-pdf-js-infinite-slugs` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Written for React 15 and ES2015 using the Airbnb style guide. Include onclick callbacks to specific locations. 
 
 ---
 
 Usage
 -----
 
-Install with `npm install react-pdf-js-infinite`
+Install with `npm install react-pdf-js-infinite-slugs`
 
 Use in your app
 
 ```js
-import React from 'react';
-import PDF from 'react-pdf-js-infinite';
+import React, { Component } from 'react';
+import PDF from 'react-pdf-js-infinite-slugs';
 
-export default class MyPdfViewer extends React.Component {
+export default class Viewer extends Component {
 
   render() {
     return (
       <div>
-        <PDF file="somefile.pdf" scale={1.5} />
+        <PDF 
+          file="somefile.pdf" 
+          scale={1.5} 
+          onClick={(e,coordinates) => {
+            console.log(coordinates);
+          }}
+        />
       </div>
     )
   }
