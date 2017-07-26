@@ -20,7 +20,7 @@ export default class PdfPage extends Component {
     // console.log('aftercomponentDidMount');
     if(this.props.page == 1)
       this.props.setFirstCanvas(this.canvas);
-    this.props.onPageComplete(this.canvas);
+    this.props.onPageComplete(this.canvas, this.props.page);
   }
 
   getCoordinates = (e) => {
