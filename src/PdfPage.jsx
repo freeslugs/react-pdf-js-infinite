@@ -16,7 +16,7 @@ export default class PdfPage extends Component {
   componentDidMount = async () =>  {
     // console.log('componentDidMount')
     const pdfPage = await this.props.pdf.getPage(this.props.page);
-    this.renderPage(pdfPage);
+    await this.renderPage(pdfPage);
     // console.log('aftercomponentDidMount');
     if(this.props.page == 1)
       this.props.setFirstCanvas(this.canvas);
